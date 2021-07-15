@@ -11,6 +11,7 @@ jobs:
   build:  
     # These next lines define the Android machine image executor: https://circleci.com/docs/2.0/executor-types/
     executor: android/android
+
     steps:
       # Checkout the code as the first step.
       - checkout
@@ -36,8 +37,9 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew lint test
+      - store_test_results:
+            path: app/build/test-results
       - store_artifacts:
-          path: app/build/test-results
-      - store_artifacts:
-          path: app/build/outputs/apk/debug/
-          destination: artifact-file
+            path: app/build/outputs/apk/debug/
+            destination: artifact-file
+          
